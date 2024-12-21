@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "airport",
     "user",
-    "base"
+    "base",
 ]
 
 MIDDLEWARE = [
