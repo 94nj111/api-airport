@@ -19,6 +19,10 @@ class Airplane(UUIDModel):
         AirplaneType, on_delete=models.CASCADE, related_name="airplanes"
     )
 
+    @property
+    def capacity(self):
+        return self.rows * self.seats_in_row
+
     def __str__(self):
         return f"{self.airplane_type} {self.name}: (rows: {self.rows}, seats in row: {self.seats_in_row})"
 
@@ -26,6 +30,10 @@ class Airplane(UUIDModel):
 class Airport(UUIDModel):
     name = models.CharField(max_length=255)
     closest_big_city = models.CharField(max_length=255)
+
+    @property
+    def full_info(self):
+        return f"{self.name} ({self.closest_big_city})"
 
     def __str__(self):
         return f"{self.name}: {self.closest_big_city}"
@@ -51,6 +59,10 @@ class Flight(UUIDModel):
     )
     departure_time = models.DateTimeField()
     arrival_time = models.DateTimeField()
+
+    @property
+    def tickets_available(self):
+        return self.airplane.capacity - self.tickets.count()
 
     def __str__(self):
         return f"{self.route} | {self.airplane} | {self.departure_time} - {self.arrival_time}"
@@ -99,7 +111,7 @@ class Ticket(UUIDModel):
                 )
 
     def clean(self):
-        Ticket.validate_ticket(self.row, self.seat, self.movie_session.cinema_hall.id)
+        Ticket.validate_ticket(self.row, self.seat, self.flight.airplane.id)
 
     def save(
         self,
