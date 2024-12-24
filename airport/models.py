@@ -4,14 +4,14 @@ from django.conf import settings
 from django.core.exceptions import ValidationError
 
 
-class AirplaneType(UUIDModel):
+class AirplaneType(models.Model):
     name = models.CharField(max_length=255)
 
     def __str__(self):
         return self.name
 
 
-class Airplane(UUIDModel):
+class Airplane(models.Model):
     name = models.CharField(max_length=255)
     rows = models.IntegerField()
     seats_in_row = models.IntegerField()
@@ -27,7 +27,7 @@ class Airplane(UUIDModel):
         return f"{self.airplane_type} {self.name}: (rows: {self.rows}, seats in row: {self.seats_in_row})"
 
 
-class Airport(UUIDModel):
+class Airport(models.Model):
     name = models.CharField(max_length=255)
     closest_big_city = models.CharField(max_length=255)
 
@@ -39,7 +39,7 @@ class Airport(UUIDModel):
         return f"{self.name}: {self.closest_big_city}"
 
 
-class Route(UUIDModel):
+class Route(models.Model):
     source = models.ForeignKey(
         Airport, on_delete=models.CASCADE, related_name="source_routes"
     )
@@ -52,7 +52,7 @@ class Route(UUIDModel):
         return f"{self.source} - {self.destination}"
 
 
-class Flight(UUIDModel):
+class Flight(models.Model):
     route = models.ForeignKey(Route, on_delete=models.CASCADE, related_name="flights")
     airplane = models.ForeignKey(
         Airplane, on_delete=models.CASCADE, related_name="flights"
@@ -68,7 +68,7 @@ class Flight(UUIDModel):
         return f"{self.route} | {self.airplane} | {self.departure_time} - {self.arrival_time}"
 
 
-class Crew(UUIDModel):
+class Crew(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     flights = models.ManyToManyField(Flight, related_name="crews")
@@ -77,16 +77,17 @@ class Crew(UUIDModel):
         return f"{self.first_name} {self.last_name}"
 
 
-class Order(UUIDModel):
+class Order(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="orders"
     )
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.user.email}: {self.created_at}"
 
 
-class Ticket(UUIDModel):
+class Ticket(models.Model):
     row = models.IntegerField()
     seat = models.IntegerField()
     flight = models.ForeignKey(Flight, on_delete=models.CASCADE, related_name="tickets")
