@@ -7,6 +7,11 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+ENV POETRY_VIRTUALENVS_CREATE=false
+
 RUN mkdir -p /files/media
 
 ARG UID=10001
@@ -22,9 +27,10 @@ RUN adduser \
 RUN chown -R appuser /files/media
 RUN chmod -R 755 /files/media
 
-RUN pip install --upgrade pip
-COPY requirements.txt requirements.txt
-RUN pip install -r requirements.txt
+COPY pyproject.toml poetry.lock* ./
+
+RUN pip install --no-cache-dir poetry && \
+    poetry install --no-dev --no-interaction --no-ansi
 
 USER appuser
 

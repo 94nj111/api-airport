@@ -29,13 +29,6 @@ services:
   redis:
     image: redis:latest
 
-  redisinsight:
-    image: redislabs/redisinsight:latest
-    ports:
-      - "5540:5540"
-    depends_on:
-      - redis
-
 volumes:
   my_db:
   my_media:
