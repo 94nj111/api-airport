@@ -14,6 +14,7 @@ CACHE_PATTERNS = {
     Flight: "*flight_view*",
 }
 
+
 @receiver(post_save)
 def invalidate_cache(sender, instance, **kwargs):
     if sender in CACHE_PATTERNS:

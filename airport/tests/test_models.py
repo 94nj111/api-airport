@@ -15,11 +15,16 @@ class ModelTests(TestCase):
 
     def test_airport_full_info(self):
         airport = Airport.objects.create(name="Heathrow", closest_big_city="London")
-        self.assertEqual(airport.full_info, f"{airport.name} ({airport.closest_big_city})")
+        self.assertEqual(
+            airport.full_info, f"{airport.name} ({airport.closest_big_city})"
+        )
 
     def test_route_str(self):
         source = Airport.objects.create(name="Heathrow", closest_big_city="London")
-        destination = Airport.objects.create(name="Charles de Gaulle", closest_big_city="Paris")
-        route = Route.objects.create(source=source, destination=destination, distance=350)
+        destination = Airport.objects.create(
+            name="Charles de Gaulle", closest_big_city="Paris"
+        )
+        route = Route.objects.create(
+            source=source, destination=destination, distance=350
+        )
         self.assertEqual(str(route), f"{route.source} - {route.destination}")
-                         

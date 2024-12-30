@@ -15,8 +15,6 @@ class Command(BaseCommand):
                 db_connection.cursor()
             except OperationalError:
                 self.stdout.write(
-                    self.style.WARNING(
-                        "db connection failed, newxt try in 1 second"
-                    )
+                    self.style.WARNING("db connection failed, newxt try in 1 second")
                 )
                 time.sleep(1)

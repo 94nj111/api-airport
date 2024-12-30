@@ -27,7 +27,9 @@ class AirplaneTypeSerializerTests(TestCase):
     def test_airplane_type_serializer(self):
         airplane_type = AirplaneType.objects.create(name="Boeing 737")
         serializer = AirplaneTypeSerializer(instance=airplane_type)
-        self.assertEqual(serializer.data, {"id": airplane_type.id, "name": "Boeing 737"})
+        self.assertEqual(
+            serializer.data, {"id": airplane_type.id, "name": "Boeing 737"}
+        )
 
 
 class AirplaneSerializerTests(TestCase):
