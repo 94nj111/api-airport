@@ -1,0 +1,257 @@
+[
+    {
+        "model": "airport.airplanetype",
+        "pk": 1,
+        "fields": {
+            "name": "Boeing 737"
+        }
+    },
+    {
+        "model": "airport.airplanetype",
+        "pk": 2,
+        "fields": {
+            "name": "Airbus A320"
+        }
+    },
+    {
+        "model": "airport.airplanetype",
+        "pk": 3,
+        "fields": {
+            "name": "Embraer E190"
+        }
+    },
+    {
+        "model": "airport.airplane",
+        "pk": 1,
+        "fields": {
+            "name": "Boeing 737-800",
+            "rows": 30,
+            "seats_in_row": 6,
+            "airplane_type": 1
+        }
+    },
+    {
+        "model": "airport.airplane",
+        "pk": 2,
+        "fields": {
+            "name": "Airbus A320-200",
+            "rows": 28,
+            "seats_in_row": 6,
+            "airplane_type": 2
+        }
+    },
+    {
+        "model": "airport.airplane",
+        "pk": 3,
+        "fields": {
+            "name": "Embraer E190",
+            "rows": 20,
+            "seats_in_row": 4,
+            "airplane_type": 3
+        }
+    },
+    {
+        "model": "airport.airport",
+        "pk": 1,
+        "fields": {
+            "name": "John F. Kennedy International Airport",
+            "closest_big_city": "New York"
+        }
+    },
+    {
+        "model": "airport.airport",
+        "pk": 2,
+        "fields": {
+            "name": "Los Angeles International Airport",
+            "closest_big_city": "Los Angeles"
+        }
+    },
+    {
+        "model": "airport.airport",
+        "pk": 3,
+        "fields": {
+            "name": "Chicago O'Hare International Airport",
+            "closest_big_city": "Chicago"
+        }
+    },
+    {
+        "model": "airport.route",
+        "pk": 1,
+        "fields": {
+            "source": 1,
+            "destination": 2,
+            "distance": 4000
+        }
+    },
+    {
+        "model": "airport.route",
+        "pk": 2,
+        "fields": {
+            "source": 2,
+            "destination": 3,
+            "distance": 3000
+        }
+    },
+    {
+        "model": "airport.route",
+        "pk": 3,
+        "fields": {
+            "source": 3,
+            "destination": 1,
+            "distance": 2000
+        }
+    },
+    {
+        "model": "airport.flight",
+        "pk": 1,
+        "fields": {
+            "route": 1,
+            "airplane": 1,
+            "departure_time": "2024-12-24T17:56:31.072823",
+            "arrival_time": "2024-12-24T23:56:31.072838"
+        }
+    },
+    {
+        "model": "airport.flight",
+        "pk": 2,
+        "fields": {
+            "route": 2,
+            "airplane": 2,
+            "departure_time": "2024-12-25T17:56:31.072843",
+            "arrival_time": "2024-12-25T22:56:31.072846"
+        }
+    },
+    {
+        "model": "airport.flight",
+        "pk": 3,
+        "fields": {
+            "route": 3,
+            "airplane": 3,
+            "departure_time": "2024-12-26T17:56:31.072849",
+            "arrival_time": "2024-12-26T21:56:31.072852"
+        }
+    },
+    {
+        "model": "airport.crew",
+        "pk": 1,
+        "fields": {
+            "first_name": "John",
+            "last_name": "Doe",
+            "flights": [
+                1
+            ]
+        }
+    },
+    {
+        "model": "airport.crew",
+        "pk": 2,
+        "fields": {
+            "first_name": "Jane",
+            "last_name": "Smith",
+            "flights": [
+                2
+            ]
+        }
+    },
+    {
+        "model": "airport.crew",
+        "pk": 3,
+        "fields": {
+            "first_name": "Bob",
+            "last_name": "Johnson",
+            "flights": [
+                3
+            ]
+        }
+    },
+    {
+        "model": "user.user",
+        "pk": "41f041bc-8103-4707-a2a7-ecf0fc083cc2",
+        "fields": {
+            "email": "user1@example.com",
+            "password": "pbkdf2_sha256$260000$examplepasswordhash",
+            "is_staff": false,
+            "is_superuser": false,
+            "first_name": "Regular",
+            "last_name": "User1"
+        }
+    },
+    {
+        "model": "user.user",
+        "pk": "9683924f-bf2a-48e1-b8b4-0f7730f192b1",
+        "fields": {
+            "email": "user2@example.com",
+            "password": "pbkdf2_sha256$260000$examplepasswordhash",
+            "is_staff": false,
+            "is_superuser": false,
+            "first_name": "Regular",
+            "last_name": "User2"
+        }
+    },
+    {
+        "model": "user.user",
+        "pk": "565a574b-4e3c-4b46-b99f-e342d17a5be2",
+        "fields": {
+            "email": "user3@example.com",
+            "password": "pbkdf2_sha256$260000$examplepasswordhash",
+            "is_staff": false,
+            "is_superuser": false,
+            "first_name": "Regular",
+            "last_name": "User3"
+        }
+    },
+    {
+        "model": "airport.order",
+        "pk": 1,
+        "fields": {
+            "user": "565a574b-4e3c-4b46-b99f-e342d17a5be2",
+            "created_at": "2024-12-23T17:56:31.073269"
+        }
+    },
+    {
+        "model": "airport.order",
+        "pk": 2,
+        "fields": {
+            "user": "9683924f-bf2a-48e1-b8b4-0f7730f192b1",
+            "created_at": "2024-12-23T17:56:31.073279"
+        }
+    },
+    {
+        "model": "airport.order",
+        "pk": 3,
+        "fields": {
+            "user": "9683924f-bf2a-48e1-b8b4-0f7730f192b1",
+            "created_at": "2024-12-23T17:56:31.073281"
+        }
+    },
+    {
+        "model": "airport.ticket",
+        "pk": 1,
+        "fields": {
+            "row": 1,
+            "seat": 1,
+            "flight": 1,
+            "order": 1
+        }
+    },
+    {
+        "model": "airport.ticket",
+        "pk": 2,
+        "fields": {
+            "row": 2,
+            "seat": 2,
+            "flight": 2,
+            "order": 2
+        }
+    },
+    {
+        "model": "airport.ticket",
+        "pk": 3,
+        "fields": {
+            "row": 3,
+            "seat": 3,
+            "flight": 3,
+            "order": 3
+        }
+    }
+]
